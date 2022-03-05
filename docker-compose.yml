@@ -1,0 +1,53 @@
+version: '3'
+
+volumes:
+  mysql-data:
+
+services:
+  app:
+    build: ./docker/php
+    volumes: 
+      - ./app:/var/www/app
+      - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
+    container_name: app
+    restart: unless-stopped
+    tty: true
+    working_dir: /var/www/app
+    networks:
+      - app-network
+
+  webserver:
+    image: nginx:1.21-alpine
+    container_name: webserver
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - app-network
+    volumes:
+      - ./app:/var/www/app
+      - ./docker/nginx/conf.d/:/etc/nginx/conf.d/
+
+  mysql:
+    image: mysql:8.0.28-debian
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
