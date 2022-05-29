@@ -2,8 +2,12 @@
 
 namespace App\Models;
 
-use App\Models\Node;
+use Illuminate\Database\Eloquent\Model;
 
-class Card extends Node
+class Card extends Model
 {
+    public function column()
+    {
+        $this->belongsTo(Column::class);
+    }
 }

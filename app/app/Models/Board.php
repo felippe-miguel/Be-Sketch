@@ -2,8 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Node;
+use Illuminate\Database\Eloquent\Model;
 
-class Board extends Node
+class Board extends Model
 {
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function columns()
+    {
+        return $this->hasMany(Column::class);
+    }
 }

@@ -2,8 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\Node;
+use Illuminate\Database\Eloquent\Model;
 
-class Column extends Node
+class Column extends Model
 {
+    public function board()
+    {
+        $this->belongsTo(Board::class);
+    }
+
+    public function cards()
+    {
+        $this->hasMany(Card::class);
+    }
 }
