@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Column extends Model
 {
+    protected $fillable = ['title', 'board_id'];
+
     public function board()
     {
         $this->belongsTo(Board::class);
