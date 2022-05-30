@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBoardRequest;
+use App\Http\Requests\UpdateBoardRequest;
 use App\Models\Board;
-use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class BoardController extends Controller
 {
@@ -34,19 +35,36 @@ class BoardController extends Controller
 
     public function show(Board $board): JsonResponse
     {
+        if (!Gate::allows('board-show', $board)) {
+            abort(403);
+        }
+
         return response()->json($board->toArray());
     }
 
-    public function update(Request $request, Board $board): JsonResponse
+    public function update(UpdateBoardRequest $request, Board $board): JsonResponse
     {
-        return response()->json([
-            'message' => 'Board successfully updated',
-            'id'      => $board->id
-        ]);
+        if (!Gate::allows('board-update', $board)) {
+            abort(403);
+        }
+
+        if (empty($request->validated())) {
+            return response()->json(['message' => 'Nothing to update.']);
+        }
+
+        $board->fill($request->validated())->save();
+
+        return response()->json(['message' => 'Board successfully updated']);
     }
 
     public function destroy(Board $board): JsonResponse
     {
-        //
+        if (!Gate::allows('board-destroy', $board)) {
+            abort(403);
+        }
+
+        $board->delete();
+
+        return response()->json(['message' => 'Board successfully deleted']);
     }
 }
