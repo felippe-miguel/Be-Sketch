@@ -34,12 +34,15 @@ class BoardController extends Controller
 
     public function show(Board $board): JsonResponse
     {
-        //
+        return response()->json($board->toArray());
     }
 
     public function update(Request $request, Board $board): JsonResponse
     {
-        //
+        return response()->json([
+            'message' => 'Board successfully updated',
+            'id'      => $board->id
+        ]);
     }
 
     public function destroy(Board $board): JsonResponse
