@@ -13,16 +13,16 @@ class ColumnPolicy
 
     public function show(User $user, Column $column): bool
     {
-        return $user->id === $column->board->user_id;
+        return $user->id === $column->user_id;
     }
 
     public function update(User $user, Column $column): bool
     {
-        return $user->id === $column->board->user_id;
+        return $user->id === $column->user_id;
     }
 
     public function destroy(User $user, Column $column): bool
     {
-        return $user->id === $column->board->user_id;
+        return $user->id === $column->user_id;
     }
 }

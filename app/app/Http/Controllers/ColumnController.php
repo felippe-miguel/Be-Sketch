@@ -7,12 +7,19 @@ use App\Http\Requests\Column\StoreColumnRequest;
 use App\Http\Requests\Column\UpdateColumnRequest;
 use App\Models\Column;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class ColumnController extends Controller
 {
     public function index(IndexColumnRequest $request): JsonResponse
     {
+        if (empty($request->validated())) {
+            return response()->json([
+                'columns' => Auth::user()->columns->toArray()
+            ]);
+        }
+
         $columns = Column::where('board_id', $request->board_id)->get();
 
         return response()->json([
@@ -22,7 +29,10 @@ class ColumnController extends Controller
 
     public function store(StoreColumnRequest $request): JsonResponse
     {
-        $column = Column::create($request->validated());
+        $data            = $request->validated();
+        $data['user_id'] = Auth::id();
+
+        $column = Column::create($data);
 
         return response()->json([
             'message' => 'Column successfully created',

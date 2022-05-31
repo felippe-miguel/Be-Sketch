@@ -17,7 +17,6 @@ class IndexColumnRequest extends FormRequest
     {
         return [
             'board_id' => [
-                'required',
                 Rule::exists('boards', 'id')->where('user_id', Auth::id())
             ]
         ];
