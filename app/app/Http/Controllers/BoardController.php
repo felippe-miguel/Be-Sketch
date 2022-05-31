@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreBoardRequest;
-use App\Http\Requests\UpdateBoardRequest;
+use App\Http\Requests\Board\StoreBoardRequest;
+use App\Http\Requests\Board\UpdateBoardRequest;
 use App\Models\Board;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Auth;
