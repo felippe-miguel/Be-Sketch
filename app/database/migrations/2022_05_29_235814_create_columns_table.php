@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('columns', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
             $table->foreignId('board_id');
             $table->string('title');
             $table->timestamps();
