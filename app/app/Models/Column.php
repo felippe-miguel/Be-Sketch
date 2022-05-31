@@ -10,11 +10,11 @@ class Column extends Model
 
     public function board()
     {
-        $this->belongsTo(Board::class);
+        return $this->belongsTo(Board::class);
     }
 
     public function cards()
     {
-        $this->hasMany(Card::class);
+        return $this->hasMany(Card::class);
     }
 }

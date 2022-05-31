@@ -10,6 +10,6 @@ class Card extends Model
 
     public function column()
     {
-        $this->belongsTo(Column::class);
+        return $this->belongsTo(Column::class);
     }
 }
