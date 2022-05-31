@@ -13,10 +13,8 @@ class BoardController extends Controller
 {
     public function index(): JsonResponse
     {
-        $boards = Board::where('user_id', Auth::id())->get();
-
         return response()->json([
-            'boards' => $boards->values()->toArray()
+            'boards' => Auth::user()->boards->toArray()
         ]);
     }
 
