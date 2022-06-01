@@ -2,13 +2,20 @@
 
 ## How to install
 
-After clone repository, use the follow command to install the composer dependencies
-
+- After clone repository, use the follow command to install the composer dependencies
 ```
 docker run --rm --interactive --tty --volume $PWD:/app --user $(id -u):$(id -g) composer install
 ```
 
-Now, create the .env file and update the DB info
+- Create the .env file and update the DB info
 
-After that, run the migrations
+- Run the docker-compose command
+```
+docker-compose up -d
+```
+- Access the php container and run the migrations
+```
+docker exec -it php bash
+php artisan migrate
+```
 
