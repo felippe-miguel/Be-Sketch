@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Column extends Model
 {
+    use SoftDeletes;
+
     protected $fillable = ['title', 'board_id', 'user_id'];
 
     public function user()
@@ -21,5 +24,14 @@ class Column extends Model
     public function cards()
     {
         return $this->hasMany(Card::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($column) {
+            $column->cards()->delete();
+        });
     }
 }
