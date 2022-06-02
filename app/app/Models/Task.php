@@ -25,4 +25,9 @@ class Task extends Model
     {
         return $this->belongsTo(Calendar::class);
     }
+
+    public function executionData()
+    {
+        return $this->hasMany(TaskExecutionData::class);
+    }
 }

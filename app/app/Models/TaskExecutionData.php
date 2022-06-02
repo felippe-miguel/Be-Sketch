@@ -9,6 +9,8 @@ class TaskExecutionData extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'task_execution_data';
+
     protected $fillable = [
         'task_id',
         'is_done',
