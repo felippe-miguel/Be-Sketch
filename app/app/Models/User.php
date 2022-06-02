@@ -45,11 +45,17 @@ class User extends Authenticatable
         return $this->hasMany(Card::class);
     }
 
+    public function tasks()
+    {
+        return $this->hasMany(Task::class);
+    }
+
     protected static function boot()
     {
         parent::boot();
 
         static::deleting(function ($user) {
+            $user->tasks()->delete();
             $user->cards()->delete();
             $user->columns()->delete();
             $user->boards()->delete();
