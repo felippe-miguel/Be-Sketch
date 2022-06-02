@@ -9,10 +9,20 @@ class Task extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['title', 'user_id', 'description'];
+    protected $fillable = [
+        'user_id',
+        'calendar_id',
+        'title',
+        'description',
+    ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function calendar()
+    {
+        return $this->belongsTo(Calendar::class);
     }
 }
