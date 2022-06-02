@@ -13,7 +13,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('calendar_id')->constrained();
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
         });
