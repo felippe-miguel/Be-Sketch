@@ -4,30 +4,23 @@ namespace App\Providers;
 
 use App\Models\Board;
 use App\Models\Column;
+use App\Models\Task;
 use App\Policies\BoardPolicy;
 use App\Policies\CardPolicy;
 use App\Policies\ColumnPolicy;
+use App\Policies\TaskPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
-    /**
-     * The policy mappings for the application.
-     *
-     * @var array<class-string, class-string>
-     */
     protected $policies = [
         Board::class => BoardPolicy::class,
         Column::class => ColumnPolicy::class,
         Card::class => CardPolicy::class,
+        Task::class => TaskPolicy::class,
     ];
 
-    /**
-     * Register any authentication / authorization services.
-     *
-     * @return void
-     */
     public function boot()
     {
         $this->registerPolicies();
@@ -43,5 +36,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('card-show', [CardPolicy::class, 'show']);
         Gate::define('card-update', [CardPolicy::class, 'update']);
         Gate::define('card-destroy', [CardPolicy::class, 'destroy']);
+
+        Gate::define('task-show', [TaskPolicy::class, 'show']);
+        Gate::define('task-update', [TaskPolicy::class, 'update']);
+        Gate::define('task-destroy', [TaskPolicy::class, 'destroy']);
     }
 }
