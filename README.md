@@ -2,26 +2,23 @@
 
 ## How to install
 
-- After clone repository, use the follow command to install the composer dependencies
-~~~
+After clone repository, use the follow command to install the composer dependencies
+~~~bash
 docker run --rm --interactive --tty --volume $PWD:/app --user $(id -u):$(id -g) composer install
 ~~~
-
-- Create the .env file and update the DB info
-
-- Run the docker-compose command
-~~~
+Create the .env file and update the DB info
+Run the docker-compose command
+~~~bash
 docker-compose up -d
 ~~~
-- Access the php container and run the migrations
-~~~
+Access the php container and run the migrations
+~~~bash
 docker exec -it php bash
 php artisan migrate
 ~~~
 
 ## Endpoints
-
-### POST - api/register
+#### POST - api/register
 - request
 ~~~json
 {
@@ -46,7 +43,7 @@ php artisan migrate
 }
 ~~~
 
-## POST - api/login
+#### POST - api/login
 - request
 ~~~json
 {
@@ -63,9 +60,9 @@ php artisan migrate
 }
 ~~~
 
-## GET - api/profile
+#### GET - api/profile
 - header
-~~~
+~~~json
 {
     "Authorization": "tokenstring"
 }
@@ -84,9 +81,9 @@ php artisan migrate
 }
 ~~~
 
-## GET - api/logout
+#### GET - api/logout
 - header
-~~~
+~~~json
 {
     "Authorization": "tokenstring"
 }
