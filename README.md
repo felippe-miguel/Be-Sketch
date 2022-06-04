@@ -19,9 +19,9 @@ docker exec -it php bash
 php artisan migrate
 ```
 
-# Endpoints
+## Endpoints
 
-## POST - api/register
+### POST - api/register
 - request
 ```
 {
