@@ -19,3 +19,31 @@ docker exec -it php bash
 php artisan migrate
 ```
 
+# Endpoints
+
+## POST - api/register
+- request
+```
+{
+    "name": "Jhon Doe",
+    "email": "example@email.com",
+    "password": "password"
+}
+```
+
+## POST - api/login
+- request
+```
+{
+    "email": "examle@email.com",
+    "password": "password"
+}
+```
+
+- response
+```
+{
+    "access_token": "tokenstring",
+    "token_type": "Bearer"
+}
+```
