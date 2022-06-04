@@ -31,6 +31,21 @@ php artisan migrate
 }
 ```
 
+- response
+```
+{
+    "data": {
+        "name": "Jhon Doe",
+        "email": "example@email.com",
+        "updated_at": "2022-06-04T02:34:44.000000Z",
+        "created_at": "2022-06-04T02:34:44.000000Z",
+        "id": 1
+    },
+    "access_token": "tokenstring",
+    "token_type": "Bearer"
+}
+```
+
 ## POST - api/login
 - request
 ```
@@ -45,5 +60,41 @@ php artisan migrate
 {
     "access_token": "tokenstring",
     "token_type": "Bearer"
+}
+```
+
+## GET - api/profile
+- header
+```
+{
+    "Authorization": "tokenstring"
+}
+```
+
+- response
+```
+{
+    "id": 1,
+    "name": "Jhon Doe",
+    "email": "example@email.com",
+    "email_verified_at": null,
+    "created_at": "2022-06-01T03:48:23.000000Z",
+    "updated_at": "2022-06-01T03:48:23.000000Z",
+    "deleted_at": null
+}
+```
+
+## GET - api/logout
+- header
+```
+{
+    "Authorization": "tokenstring"
+}
+```
+
+- response
+```
+{
+    "message": "You have successfully logged out"
 }
 ```
