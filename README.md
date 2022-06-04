@@ -27,7 +27,6 @@ php artisan migrate
     "password": "password"
 }
 ~~~
-
 - response
 ~~~json
 {
@@ -51,7 +50,6 @@ php artisan migrate
     "password": "password"
 }
 ~~~
-
 - response
 ~~~json
 {
@@ -67,7 +65,6 @@ php artisan migrate
     "Authorization": "tokenstring"
 }
 ~~~
-
 - response
 ~~~json
 {
@@ -88,10 +85,114 @@ php artisan migrate
     "Authorization": "tokenstring"
 }
 ~~~
-
 - response
 ~~~json
 {
     "message": "You have successfully logged out"
+}
+~~~
+
+#### POST - api/board
+- header
+~~~json
+{
+    "Authorization": "tokenstring"
+}
+~~~
+- request
+~~~json
+{
+    "title": "board title"
+}
+~~~
+- response
+~~~json
+{
+    "message": "Board successfully created",
+    "id": 1
+}
+~~~
+
+#### GET - api/board
+- header
+~~~json
+{
+    "Authorization": "tokenstring"
+}
+~~~
+- response
+~~~json
+{
+    "boards": [
+        {
+            "id": 1,
+            "user_id": 1,
+            "title": "board title",
+            "created_at": "2022-06-01T03:50:00.000000Z",
+            "updated_at": "2022-06-01T03:50:00.000000Z",
+            "deleted_at": null
+        },
+        {
+            "id": 2,
+            "user_id": 1,
+            "title": "board 2 title",
+            "created_at": "2022-06-04T02:48:05.000000Z",
+            "updated_at": "2022-06-04T02:48:05.000000Z",
+            "deleted_at": null
+        }
+    ]
+}
+~~~
+
+#### GET - api/board/{id}
+- header
+~~~json
+{
+    "Authorization": "tokenstring"
+}
+~~~
+- response
+~~~json
+{
+    "id": 1,
+    "user_id": 1,
+    "title": "board title",
+    "created_at": "2022-06-01T03:50:00.000000Z",
+    "updated_at": "2022-06-01T03:50:00.000000Z",
+    "deleted_at": null
+}
+~~~
+
+#### PUT - api/board/{id}
+- header
+~~~json
+{
+    "Authorization": "tokenstring"
+}
+~~~
+- request
+~~~json
+{
+    "title": "flevers"
+}
+~~~
+- response
+~~~json
+{
+    "message": "Board successfully updated"
+}
+~~~
+
+#### DELETE - api/board/{id}
+- header
+~~~json
+{
+    "Authorization": "tokenstring"
+}
+~~~
+- response
+~~~json
+{
+    "message": "Board successfully deleted"
 }
 ~~~
