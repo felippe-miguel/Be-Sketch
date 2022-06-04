@@ -50,7 +50,7 @@ php artisan migrate
 - request
 ```
 {
-    "email": "examle@email.com",
+    "email": "example@email.com",
     "password": "password"
 }
 ```
